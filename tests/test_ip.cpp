@@ -38,10 +38,31 @@ public:
     }
 };
 
-TEST_F(test_ip_fixture, test_IPv4)
+TEST_F(test_ip_fixture, test_IPv4_basic)
 {
-    std::cout << __PRETTY_FUNCTION__ << "\n";
+    IPv4   ip(192, 168, 0, 10);
 
+    ASSERT_TRUE(   ip[0] == 192
+                && ip[1] == 168
+                && ip[2] == 0
+                && ip[3] == 10);
+
+    /* TODO: 
+    ip[0] = 10;
+    ip[0] = 132;
+    ip[0] = 0;
+    ip[0] = 66;
+
+    ASSERT_TRUE(ip == IPv4(10, 132, 0, 66));
+    */
+
+    ASSERT_TRUE("192.168.0.10" == to_string(ip));
+
+    std::cout << "------------------------------------\n";
+}
+
+TEST_F(test_ip_fixture, test_IPv4_stream)
+{
     IPv4   ip(192, 168, 0, 10);
     std::ostringstream oss;
 
@@ -65,4 +86,5 @@ TEST_F(test_ip_fixture, test_IPv4)
 // -----------------------------------------------------------------
 /*
 https://godbolt.org/z/dTznTeof4
+https://godbolt.org/z/sh395c87G
 */
