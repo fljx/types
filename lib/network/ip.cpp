@@ -6,6 +6,14 @@ namespace jx::types::network
 {
 // -----------------------------------------------------------------
 
+IPv4::IPv4(const std::string &from)
+{
+    std::istringstream is{from};
+    is >> *this;
+}
+
+// -----------------------------------------------------------------
+
     std::string to_string(const IPv4 &data)
     {
         return std::to_string(data[0]) + "."
@@ -17,6 +25,11 @@ namespace jx::types::network
     bool operator==(const IPv4 &ip1, const IPv4 &ip2)
     {
         return ip1.data.lit_end == ip2.data.lit_end;
+    }
+
+    bool operator!=(const IPv4 &ip1, const IPv4 &ip2)
+    {
+        return !(ip1 == ip2);
     }
 
     std::ostream & operator<<(std::ostream &os, const IPv4 &ip)

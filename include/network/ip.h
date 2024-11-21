@@ -21,6 +21,7 @@ namespace jx::types::network
         :   IPv4(o[0], o[1], o[2], o[3])
         {}
 
+        IPv4(const std::string &from);
         union
         {
             uint8_t bytes[4];
@@ -41,9 +42,13 @@ namespace jx::types::network
         {   return data.bytes[i]; }
 
         friend std::istream & operator>>(std::istream &is, IPv4 &ip);
+        friend bool operator==(const IPv4 &ip1, const IPv4 &ip2);
     };
 
-    std::string to_string(const IPv4  &data);
+    bool operator==(const IPv4 &ip1, const IPv4 &ip2);
+    bool operator!=(const IPv4 &ip1, const IPv4 &ip2);
+
+    std::string to_string(const IPv4 &data);
 
     std::ostream & operator<<(std::ostream &os, const IPv4 &ip);
 
