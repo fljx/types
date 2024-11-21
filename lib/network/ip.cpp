@@ -6,11 +6,11 @@ namespace jx::types::network
 {
 // -----------------------------------------------------------------
 
-IPv4::IPv4(const std::string &from)
-{
-    std::istringstream is{from};
-    is >> *this;
-}
+    IPv4::IPv4(const std::string &from)
+    {
+        std::istringstream is{from};
+        is >> *this;
+    }
 
 // -----------------------------------------------------------------
 

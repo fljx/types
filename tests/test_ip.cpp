@@ -82,7 +82,10 @@ TEST_F(test_ip_fixture, test_IPv4_basic)
     ASSERT_TRUE("10.132.0.66" == to_string(ip1));
 
     // Test compare to implicitly built from string.
-    //ASSERT_TRUE(ip1 == "192.168.0.10");
+    ASSERT_NE(ip1, "192.168.0.10");
+    ASSERT_EQ(ip1, "10.132.0.66");
+    // auto result = (ip1 == "192.168.0.10");
+    // ASSERT_TRUE(result);
     ASSERT_EQ(ip1, std::string{"10.132.0.66"});
     ASSERT_TRUE(ip1 != std::string{"192.168.0.10"});
 

@@ -22,6 +22,11 @@ namespace jx::types::network
         {}
 
         IPv4(const std::string &from);
+
+        IPv4(const char *from)
+        :   IPv4(std::string{from})
+        {}
+
         union
         {
             uint8_t bytes[4];
