@@ -7,11 +7,6 @@
 
 // -----------------------------------------------------------------
 
-template<typename T, unsigned int sz>
-inline unsigned int lengthof(T (&)[sz]) { return sz; }
-
-// -----------------------------------------------------------------
-
 namespace jx::types::network
 {
 

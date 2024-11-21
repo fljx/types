@@ -6,6 +6,7 @@
 #include "gtest/gtest.h"
 
 #include "network/ip.h"
+#include "extend/niceties.h"
 
 // -----------------------------------------------------------------
 
@@ -49,14 +50,15 @@ TEST_F(test_ip_fixture, test_IPv4_basic)
 
     /* TODO: 
     ip[0] = 10;
-    ip[0] = 132;
-    ip[0] = 0;
-    ip[0] = 66;
+    ip[1] = 132;
+    ip[2] = 0;
+    ip[3] = 66;
 
     ASSERT_TRUE(ip == IPv4(10, 132, 0, 66));
     */
 
     ASSERT_TRUE("192.168.0.10" == to_string(ip));
+    // ASSERT_TRUE("192.168.0.10" == ip);
 
     std::cout << "------------------------------------\n";
 }
@@ -73,11 +75,16 @@ TEST_F(test_ip_fixture, test_IPv4_stream)
     std::istringstream is{test_list};
 
     for (size_t i = 0; is.good()
-        && i < sizeof(test_strings)/sizeof(test_strings[0]);
+        && i < jx::types::count_of(test_strings);
         ++i)
     {
         is >> ip;
+
+std::cout << i << ") to_string(ip): " << to_string(ip)
+    << " == test_strings[i]: " << test_strings[i] << std::endl;
+
         ASSERT_TRUE(to_string(ip) == test_strings[i]);
+        //ASSERT_TRUE(ip == test_strings[i]);
     }
 
     std::cout << "------------------------------------\n";

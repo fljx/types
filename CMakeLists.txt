@@ -7,13 +7,13 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-add_library(types
+add_library(types SHARED
     "include/network/ip.h"
     "lib/network/ip.cpp"
 )
 
-option(BUILD_TESTING "Build SW tests" OFF)
-option(BUILD_DEMO "Build demo app" ON)
+option(BUILD_TESTING "Build SW tests" ON)
+option(BUILD_DEMO "Build demo app" OFF)
 
 if(BUILD_TESTING)
     add_subdirectory(tests)
