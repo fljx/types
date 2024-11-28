@@ -83,6 +83,54 @@ namespace jx::types::network
         return is;
     }
 
-// -----------------------------------------------------------------
+    // -----------------------------------------------------------------
+    // -----------------------------------------------------------------
 
-}   // jx::types::network
+    // ipv4_mask::ipv4_mask(IPv4 addr, IPv4 net_mask)
+    // :   address_(addr),
+    //     mask_(net_mask)
+    // {
+    //     apply_mask();
+    // }
+
+    // ipv4_mask::ipv4_mask(IPv4 addr, uint32_t bit_mask)
+    // // Ugly `reinterpret_cast`. IPv4 should have a constructor.
+    // :   ipv4_mask(addr, reinterpret_cast<IPv4>(bit_mask))
+    // {}
+
+    // ipv4_mask ipv4_mask::operator+=(IPv4)
+    // { return ipv4_mask(); }
+
+    // const IPv4 &ipv4_mask::address() const
+    // {   return address_; }
+
+    // const IPv4 &ipv4_mask::mask() const
+    // {   return mask_; }
+
+    // void ipv4_mask::apply_mask()
+    // {
+    //     address_.data.lit_end &= mask_.data.lit_end;
+    // }
+
+    // std::string to_string(const ipv4_mask &data)
+    // {
+    //     return to_string(data.address())
+    //         + "/" + to_string(data.mask());
+    // }
+
+    // std::ostream &operator<<(std::ostream &os, const ipv4_mask &data)
+    // {
+    //     os << to_string(data);
+    //     return os;
+    // }
+
+    // // -----------------------------------------------------------------
+    // ipv4_route::ipv4_route(ipv4_mask net_mask, IPv4 gw) {}
+
+    // // -----------------------------------------------------------------
+    // ipv4_route operator+(ipv4_mask, IPv4)
+    // { return ipv4_route(); }
+
+    // -----------------------------------------------------------------
+
+} // namespace jx::types::network
