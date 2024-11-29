@@ -41,24 +41,53 @@ public:
 
 TEST_F(test_ip_fixture, test_IPv4_basic)
 {
-    IPv4   ip(192, 168, 0, 10);
+    // Direct octets constructor.
+    IPv4   ip1(192, 168, 0, 10);
 
-    ASSERT_TRUE(   ip[0] == 192
-                && ip[1] == 168
-                && ip[2] == 0
-                && ip[3] == 10);
+    ASSERT_TRUE(   ip1[0] == 192
+                && ip1[1] == 168
+                && ip1[2] == 0
+                && ip1[3] == 10);
 
-    /* TODO: 
-    ip[0] = 10;
-    ip[1] = 132;
-    ip[2] = 0;
-    ip[3] = 66;
+    // std::array constructor.
+    IPv4   ip2(std::array<uint8_t, 4>{192, 168, 1, 101});
 
-    ASSERT_TRUE(ip == IPv4(10, 132, 0, 66));
-    */
+    ASSERT_TRUE(   ip2[0] == 192
+                && ip2[1] == 168
+                && ip2[2] == 1
+                && ip2[3] == 101);
 
-    ASSERT_TRUE("192.168.0.10" == to_string(ip));
-    // ASSERT_TRUE("192.168.0.10" == ip);
+    // std::string constructor.
+    IPv4   ip3("10.152.200.26");
+
+    ASSERT_TRUE(   ip3[0] == 10
+                && ip3[1] == 152
+                && ip3[2] == 200
+                && ip3[3] == 26);
+
+    // Comparison operator.
+    ASSERT_FALSE( ip1 == ip2 );
+    ASSERT_TRUE( ip1 != ip3 );
+
+    // Test modifying it.
+    ip1[0] = 10;
+    ip1[1] = 132;
+    ip1[2] = 0;
+    ip1[3] = 66;
+
+    ASSERT_TRUE(ip1 == IPv4(10, 132, 0, 66));
+
+    // Test convert to string.
+    ASSERT_FALSE("192.168.0.10" == to_string(ip1));
+    ASSERT_TRUE("10.132.0.66" == to_string(ip1));
+
+    // Test compare to implicitly built from string.
+    ASSERT_NE(ip1, "192.168.0.10");
+    ASSERT_EQ(ip1, "10.132.0.66");
+    ASSERT_EQ(ip1, std::string{"10.132.0.66"});
+    ASSERT_TRUE(ip1 != std::string{"192.168.0.10"});
+
+    ASSERT_FALSE("192.168.0.10" == ip2);
 
     std::cout << "------------------------------------\n";
 }
